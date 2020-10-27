@@ -1,0 +1,3 @@
+MainWindow{
+    border-image:url(../images/logo.png);
+}
