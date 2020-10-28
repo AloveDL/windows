@@ -109,13 +109,14 @@ class DetectionWindow(QMainWindow):
             # txt_path = QFileDialog.getOpenFileName(self, '选择检测结果', './images',
             #                                         # "All Files (*.*);; "
             #                                         "TXT  (*.txt);;")
-            print(file_path)
+            # print(file_path)
+            tif_list = []
             image_path = file_path[0]
             image_name = image_path.split('.')[0].split('/')[-1]
-            txt_path = 'D:/share/{}/{}.txt'.format(image_name, image_name)
-            print(image_name)
+            tif_list.append(image_name+"."+image_path.split('.')[-1])
+            self.dock_slice_tif.set_slice_view(tif_list)
         except:
-            pass
+            QMessageBox.critical(self, "错误", "导入失败", QMessageBox.Yes, QMessageBox.Yes)
 
     def batch_open(self):
         startDirectory = "C://"
