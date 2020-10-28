@@ -109,29 +109,11 @@ class DetectionWindow(QMainWindow):
             # txt_path = QFileDialog.getOpenFileName(self, '选择检测结果', './images',
             #                                         # "All Files (*.*);; "
             #                                         "TXT  (*.txt);;")
+            print(file_path)
             image_path = file_path[0]
             image_name = image_path.split('.')[0].split('/')[-1]
             txt_path = 'D:/share/{}/{}.txt'.format(image_name, image_name)
-            if os.path.exists(image_path) and os.path.exists(txt_path):
-                self.analysis()
-            image = cv2.imread(image_path, 1)
-
-            boxes = []
-            slice_image_list = []
-            for line in open(txt_path).readlines():
-                box = [float(x) for x in line.strip().split(' ')]
-                boxes.append(box)
-
-                slice_image = image[int(box[1]):int(box[3]), int(box[0]):int(box[2])]
-                slice_image = slice_image.copy()
-
-                slice_image_list.append(slice_image)
-
-            self.boxes_info = boxes
-            self.slice_image_list = slice_image_list
-
-            self.target_view.set_image(image)
-            self.target_view.set_boxes(self.boxes_info)
+            print(image_name)
         except:
             pass
 

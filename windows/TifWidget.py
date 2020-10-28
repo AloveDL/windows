@@ -50,14 +50,8 @@ class TifWidget(QDockWidget):
             return
         self.slice_view_list = []
         for i, slice_image in enumerate(slice_image_list):
-            slice_qimage = QImage(slice_image.data, slice_image.shape[1], slice_image.shape[0],
-                                  slice_image.shape[1] * slice_image.shape[2], QImage.Format_RGB888)
-            slice_pix = QPixmap.fromImage(slice_qimage)
-
-            if slice_pix.width() > 200 or slice_pix.height() > 200:
-                slice_pix = slice_pix.scaled(200, 200, Qt.KeepAspectRatio)
-
             list_item = QListWidgetItem()
+            list_item.setText(slice_image)
             # list_item.setSizeHint(QSize(200, slice_image.shape[0]))
 
             # image_layout = QHBoxLayout()
@@ -70,9 +64,6 @@ class TifWidget(QDockWidget):
 
             # image_label.setPixmap(slice_pix)
 
-            pix_icon = QIcon(slice_pix)
-
-            list_item.setIcon(pix_icon)
             self.view_list.addItem(list_item)
             # self.view_list.setItemWidget(list_item, image_widget)
             self.slice_view_list.append(list_item)
